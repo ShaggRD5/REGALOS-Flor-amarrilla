@@ -1290,17 +1290,14 @@ body{overflow:hidden;height:100vh;width:100vw;background:linear-gradient(180deg,
   }
   50% {
     opacity: 1;
-    transform: translateY(-15vmin) translateX(2vmin);
-    filter: blur(0.2vmin);
+transform: translateY(-15vmin) translateX(2vmin);
   }
   75% {
-    transform: translateY(-20vmin) translateX(-2vmin);
-    filter: blur(0.2vmin);
+transform: translateY(-20vmin) translateX(-2vmin);
   }
   100% {
-    transform: translateY(-30vmin);
-    opacity: 0;
-    filter: blur(1vmin);
+transform: translateY(-30vmin);
+     opacity: 0;
   }
 }
 @keyframes light-ans {
@@ -1314,17 +1311,14 @@ body{overflow:hidden;height:100vh;width:100vw;background:linear-gradient(180deg,
   }
   50% {
     opacity: 1;
-    transform: translateY(-15vmin) translateX(2vmin);
-    filter: blur(0.2vmin);
+transform: translateY(-15vmin) translateX(2vmin);
   }
   75% {
-    transform: translateY(-20vmin) translateX(-2vmin);
-    filter: blur(0.2vmin);
+transform: translateY(-20vmin) translateX(-2vmin);
   }
   100% {
-    transform: translateY(-30vmin);
-    opacity: 0;
-    filter: blur(1vmin);
+transform: translateY(-30vmin);
+     opacity: 0;
   }
 }
 @-webkit-keyframes moving-flower-1 {
@@ -1689,10 +1683,10 @@ var noGiveUp=['NOOOOO \u{1F62D}','\u00BFEn serio NO? \u{1F622}','La respuesta co
 function pk(a){return a[Math.floor(Math.random()*a.length)]}
 function phraseFor(x,y){var w=window.innerWidth,h=window.innerHeight,si=document.querySelector('.siBtn').getBoundingClientRect();var cx=si.left+si.width/2,cy=si.top+si.height/2;if(Math.abs(x-cx)<w*.2&&Math.abs(y-cy)<h*.16)return pk(noPhrases.n);var z;if(y<h*.25)z='t';else if(y>h*.78)z='b';else if(x<w*.22)z='l';else if(x>w*.78)z='r';else z='c';return pk(noPhrases[z])}
 function moveNo(){var b=document.getElementById('noBtn');if(!b||siFired)return;var t=Date.now();if(t-(window.__ln||0)<350)return;window.__ln=t;b.style.position='fixed';var bw=b.offsetWidth||120,bh=b.offsetHeight||52;var maxX=Math.max(8,window.innerWidth-bw-8),maxY=Math.max(8,window.innerHeight-bh-8);var x=8+Math.random()*(maxX-8),y=8+Math.random()*(maxY-8);b.style.left=x+'px';b.style.top=y+'px';b.textContent=noMoves>=6?pk(noGiveUp):phraseFor(x+bw/2,y+bh/2);noMoves++}
-function sayYes(){if(siFired)return;siFired=true;var s=document.getElementById('start');if(s){s.classList.add('bye');setTimeout(function(){s.style.display='none'},1000)}playSong();flash.classList.add('on');tcap.classList.add('on');wfShow();setTimeout(function(){flash.classList.remove('on')},1300);setInterval(makePetal,340);setInterval(hMake,2400);setTimeout(function(){document.querySelector('.message').classList.add('on')},1600);setTimeout(function(){document.getElementById('songBtn').classList.add('show')},2800)}
-for(var i=0;i<50;i++){var s=document.createElement('div');s.className='twinkle';var sz=Math.random()*5+2;s.style.width=sz+'px';s.style.height=sz+'px';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';s.style.animationDuration=(Math.random()*3+2)+'s';s.style.animationDelay=(Math.random()*5)+'s';document.body.appendChild(s)}
+function sayYes(){if(siFired)return;siFired=true;var s=document.getElementById('start');if(s){s.classList.add('bye');setTimeout(function(){s.style.display='none'},1000)}playSong();flash.classList.add('on');tcap.classList.add('on');wfShow();setTimeout(function(){flash.classList.remove('on')},1300);setInterval(makePetal,isMob?800:340);setInterval(hMake,isMob?3600:2400);setTimeout(function(){document.querySelector('.message').classList.add('on')},1600);setTimeout(function(){document.getElementById('songBtn').classList.add('show')},2800)}
+var isMob=Math.min(screen.width,screen.height)<700||/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);for(var i=0;i<(isMob?18:50);i++){var s=document.createElement('div');s.className='twinkle';var sz=Math.random()*5+2;s.style.width=sz+'px';s.style.height=sz+'px';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';s.style.animationDuration=(Math.random()*3+2)+'s';s.style.animationDelay=(Math.random()*5)+'s';document.body.appendChild(s)}
 var PC=['#ffd93d','#ffe169','#f5b51b','#fff6bf','#ffc61e','#ffe9a8'];
-function makePetal(){var p=document.createElement('div');p.className='petal';p.style.left=Math.random()*100+'vw';var sz=Math.random()*22+14;p.style.width=sz+'px';p.style.height=(sz*.9)+'px';p.style.background='radial-gradient(ellipse at 30% 30%,#fffbe0,'+PC[Math.floor(Math.random()*PC.length)]+')';p.style.borderRadius='50% 50% 50% 50% / 65% 35% 65% 35%';p.style.animation='petalFall '+(Math.random()*6+5)+'s linear forwards,petalSway '+(Math.random()*3+2)+'s ease-in-out infinite';p.style.opacity=0;document.body.appendChild(p);p.addEventListener('animationend',function(e){if(e.animationName==='petalFall')this.remove()})}
+function makePetal(){if(document.querySelectorAll('.petal').length>14){var o=document.querySelector('.petal');if(o)o.remove()}var p=document.createElement('div');p.className='petal';p.style.left=Math.random()*100+'vw';var sz=Math.random()*22+14;p.style.width=sz+'px';p.style.height=(sz*.9)+'px';p.style.background='radial-gradient(ellipse at 30% 30%,#fffbe0,'+PC[Math.floor(Math.random()*PC.length)]+')';p.style.borderRadius='50% 50% 50% 50% / 65% 35% 65% 35%';p.style.animation='petalFall '+(Math.random()*6+5)+'s linear forwards,petalSway '+(Math.random()*3+2)+'s ease-in-out infinite';p.style.opacity=0;document.body.appendChild(p);p.addEventListener('animationend',function(e){if(e.animationName==='petalFall')this.remove()})}
 function hMake(){var h=document.createElement('div');h.className='heart';h.textContent='\u2764';h.style.left=Math.random()*95+'vw';h.style.fontSize=(Math.random()*24+16)+'px';h.style.color='rgba(255,'+(225+Math.floor(Math.random()*30))+','+(110+Math.floor(Math.random()*50))+',.95)';h.style.textShadow='0 0 14px rgba(255,210,60,.95),0 0 30px rgba(255,190,40,.5)';h.style.animationDuration=(Math.random()*5+5)+'s';h.style.animationDelay=(Math.random()*4)+'s';h.style.opacity=0;document.body.appendChild(h);h.addEventListener('animationend',function(e){if(e.animationName==='heartRise')this.remove()})}
 var AUDB64='';var snd=null;function ensureSnd(){if(snd)return snd;try{snd=new Audio('Floricienta.mp3');snd.loop=true}catch(e){snd=null}return snd}
 function playSong(){var b=document.getElementById('songBtn');if(!b)return;b.classList.add('show');var s=ensureSnd();if(!s){b.innerHTML='&#128263;';return}b.innerHTML='&#128266;';var pr=s.play();if(pr&&typeof pr.then==='function'){pr.then(function(){b.classList.add('on')}).catch(function(){b.innerHTML='&#128263;'})}else{b.classList.add('on')}}
